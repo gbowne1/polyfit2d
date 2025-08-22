@@ -51,5 +51,5 @@ if(BUILD_TESTING)
     add_test(NAME Polyfit2DTest COMMAND polyfit2d_test)
 endif()
 
-install(TARGETS polyfil2d)
+install(TARGETS polyfit2d)
 install()
