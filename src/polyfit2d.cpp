@@ -1,6 +1,8 @@
 #include "polyfit2d/polyfit2d.hpp"
 #include <Eigen/Dense>
 #include <cmath>
+#include <stdexcept>
+#include <iostream>
 
 namespace polyfit2d {
 
@@ -27,6 +29,11 @@ PolynomialSurface::PolynomialSurface(int degree)
 
 void PolynomialSurface::fit(const std::vector<Point3D>& points) {
     const int nTerms = numTerms(degree_);
+    
+    if (points.size() < nTerms) {
+        throw std::runtime_error("Insufficient number of points for fitting.");
+    }
+
     const int nPoints = points.size();
 
     Eigen::MatrixXd A(nPoints, nTerms);
