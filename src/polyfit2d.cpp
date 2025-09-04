@@ -48,7 +48,7 @@ void PolynomialSurface::fit(const std::vector<Point3D>& points) {
     }
 
     // Solve normal equations
-    Eigen::VectorXd coeffs = (A.transpose() * A).ldlt().solve(A.transpose() * b);
+    Eigen::VectorXd coeffs = A.colPivHouseholderQr().solve(b);
 
     for (int i = 0; i < nTerms; ++i)
         coefficients_[i] = coeffs[i];
